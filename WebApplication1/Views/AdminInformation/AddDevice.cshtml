@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Добавление данных пользователя";
+}
+
+<div>
+    <h3>Редактор</h3>
+    <table>
+        <tr><td>Добавление выполняется администратором @ViewBag.Admin.Name</td>
+        <tr><td>Устройство добавлено пользователю @ViewBag.User.Name</td>
+        <tr><td><a href="/AdminInformation/Info/@ViewBag.Admin.Id">Назад</a></td></tr>
+    </table>
+</div>

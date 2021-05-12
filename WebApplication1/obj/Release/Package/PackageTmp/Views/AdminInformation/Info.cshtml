@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "Данные пользователя";
+}
+
+<div>
+    <h3>Текущий пользователь</h3>
+    @if (ViewBag.Admin.Role == "admin")
+    {
+        <form method="post">
+            <table>
+                <tr>
+                    <td>Имя: </td>
+                    <td>@ViewBag.Admin.Name</td>
+                </tr>
+                <tr>
+                    <td>Роль: </td>
+                    <td>@ViewBag.Admin.Role</td>
+                </tr>
+                <tr>
+                    <td>Cтатус: </td>
+                    <td>@ViewBag.Admin.Status</td>
+                </tr>
+            </table>
+
+            <table>
+                <tr><td>--------</td></tr>
+                <tr>
+                    <td><a href="/AdminInformation/AddDevice?id=@ViewBag.Admin.Id&AdminId=@ViewBag.Admin.Id">Добавить устройство</a></td>
+                </tr>
+                <tr><td>--------</td></tr>
+                <tr>Собственные устройства:</tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td>Номер</td>
+                    <td>-------</td>
+                    <td>Статус</td>
+                    <td>-------</td>
+                    <td>Дата</td>
+                    <td>-------</td>
+                    <td>Редактор</td>
+                </tr>
+                @foreach (var device in ViewBag.AdminDevices)
+                {
+                    <tr>
+                        <td>@(ViewBag.AdminDevices.IndexOf(device) + 1)</td>
+                        <td></td>
+                        <td>@device.Status</td>
+                        <td></td>
+                        <td>@device.Date</td>
+                        <td></td>
+                        <td><a href="/AdminInformation/ChangeDevice?DeviceId=@device.Id&AdminId=@ViewBag.Admin.Id">/Изменить</a>/</td>
+                        <td><a href="/AdminInformation/DeleteDevice?DeviceId=@device.Id&AdminId=@ViewBag.Admin.Id">/Удалить</a>/</td>
+                    </tr>
+                }
+            </table>
+
+            <h3>Управление</h3>
+
+            <table>                
+                <tr>
+                    <td>
+                        <input type="radio" name="view" value="User" />Пользователи
+                        <input type="radio" name="view" value="Device" />Устройства
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Показать" /></td></tr>
+            </table>
+
+            @switch (ViewBag.view)
+            {
+                case "User":
+                    <table>
+                        <tr><td>--------------------</td></tr>
+                        <tr><td><a href="/AdminInformation/AddUser/@ViewBag.Admin.Id">Добавить пользователя</a></td></tr>
+                        <tr><td>--------------------</td></tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>Номер</td>
+                            <td>-------</td>
+                            <td>Id</td>
+                            <td>-------</td>
+                            <td>Имя</td>
+                            <td>-------</td>
+                            <td>Статус</td>
+                            <td>-------</td>
+                            <td>Роль</td>
+                            <td>-------</td>
+                            <td>Редактор</td>
+                        </tr>
+                        @foreach (var user in ViewBag.Entityuser)
+                        {
+                            <tr>
+                                <td>@(ViewBag.Entityuser.IndexOf(user) + 1)</td>
+                                <td></td>
+                                <td>@user.Id</td>
+                                <td></td>
+                                <td>@user.Name</td>
+                                <td></td>
+                                <td>@user.Status</td>
+                                <td></td>
+                                <td>@user.Role</td>
+                                <td></td>
+                                <td><a href="/AdminInformation/ChangeUser?UserId=@user.Id&AdminId=@ViewBag.Admin.Id">Изменить</a> / </td>
+                                <td><a href="/AdminInformation/DeleteUser?UserId=@user.Id&AdminId=@ViewBag.Admin.Id">Удалить</a> / </td>
+                                <td><a href="/AdminInformation/AddDevice?UserId=@user.Id&AdminId=@ViewBag.Admin.Id">Добавить устройство</a> / </td>
+                            </tr>
+                        }
+                    </table>
+                    break;
+                case "Device":
+                    <table>
+                        <tr>
+                            <td>Номер</td>
+                            <td>-------</td>
+                            <td>Id устройства</td>
+                            <td>-------</td>
+                            <td>Id пользователя</td>
+                            <td>-------</td>
+                            <td>Статус</td>
+                            <td>-------</td>
+                            <td>Дата</td>
+                            <td>-------</td>
+                            <td>Редактор</td>
+                        </tr>
+                        @foreach (var device in ViewBag.Devices)
+                        {
+                            <tr>
+                                <td>@(ViewBag.Devices.IndexOf(device) + 1)</td>
+                                <td></td>
+                                <td>@device.Id</td>
+                                <td></td>
+                                <td>@device.UserId</td>
+                                <td></td>
+                                <td>@device.Status</td>
+                                <td></td>
+                                <td>@device.Date</td>
+                                <td></td>
+                                <td><a href="/AdminInformation/ChangeDevice?DeviceId=@device.Id&AdminId=@ViewBag.Admin.Id">Изменить</a> / </td>
+                                <td><a href="/AdminInformation/DeleteDevice?DeviceId=@device.Id&AdminId=@ViewBag.Admin.Id">Удалить</a> / </td>
+                            </tr>
+                        }
+                    </table>
+                    break;
+                default:
+                    break;
+            }
+
+            <table>
+                <tr><td>--------</td></tr>
+                <tr>
+                    <td><a href="/home/info">Назад</a></td>
+                </tr>
+                <tr><td>--------</td></tr>
+            </table>
+
+        </form>
+    }
+    else
+    {
+          <table>
+            <tr>Нет доступа</tr>
+            <tr><td>--------</td></tr>
+            <tr>
+                <td><a href="/home/info">Назад</a></td>
+            </tr>
+            <tr><td>--------</td></tr>
+        </table>
+    }
+</div>

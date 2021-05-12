@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Данные пользователя";
+}
+<div>
+    <h3>Текущий пользователь</h3>
+    <form method="post">
+        <table>
+            <tr>
+                <td>Имя: </td>
+                <td>@ViewBag.Entityuser.Name</td>
+            </tr>
+            <tr>
+                <td>Роль: </td>
+                <td>@ViewBag.Entityuser.Role</td>
+            </tr>
+            <tr>
+                <td>Cтатус: </td>
+                <td>@ViewBag.Entityuser.Status</td>
+            </tr>
+
+            <tr>
+                <td><p>Введите имя: </p></td>
+                <td><input type="text" name="Name" /></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Найти" /></td>
+                <td></td>
+                <td></td>
+                @if (ViewBag.Entityuser.Role == "user")
+                {
+                    <td><a href="/UserInformation/Info/@ViewBag.Entityuser.Id">Показать</a></td>
+                }
+                else
+                {
+                    <td><a href="/AdminInformation/Info/@ViewBag.Entityuser.Id">Показать</a></td>
+                }
+            </tr>
+        </table>
+    </form>
+</div>

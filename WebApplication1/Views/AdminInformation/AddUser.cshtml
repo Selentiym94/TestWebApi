@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Добавление  пользователяи";
+}
+
+<div>
+    <h3>Добавление пользователя</h3>
+    <form method="post">
+        @if (ViewBag.Admin.Role == "admin")
+        {
+            <table>
+                <tr>Добавление пользователя производит администартор: @ViewBag.Admin.Name</tr>
+                <tr>
+                    <td>Имя пользователя:</td>
+                    <td><input type="text" name="Name" /></td>
+                </tr>
+                <tr>
+                    <td>Роль:</td>
+                    <td>
+                        <input type="radio" name="Role" value="user" />User
+                        <input type="radio" name="Role" value="admin" />Admin
+                    </td>
+                </tr>
+                <tr>
+                    <td>Статус:</td>
+                    <td>
+                        <input type="radio" name="Status" value="free" />free
+                        <input type="radio" name="Status" value="base" />base
+                        <input type="radio" name="Status" value="pro" />pro
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td><input type="submit" value="Сохранить" /></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="/AdminInformation/info/@ViewBag.Admin.Id">Вернуться</a></td>
+                </tr>
+
+            </table>
+            @ViewBag.mes
+        }
+        else
+        {
+            <table>
+                <tr><td>@ViewBag.mes</td></tr>
+                <tr><td><a href="/AdminInformation/info/@ViewBag.Admin.Id">Вернуться</a></td></tr>
+            </table>
+
+        }
+    </form>
+</div>

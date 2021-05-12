@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Работа с устройствами";
+}
+
+<div>
+    <h3>Редактирование данных об устройстве</h3>
+    <form method="post">
+        <table>
+            <tr>
+                <td>Пользователь: </td>
+                <td>@ViewBag.Entityuser.Name</td>
+            </tr>
+            <tr>
+                <td>ID устройства: </td>
+                <td>@ViewBag.Devices.Id</td>
+            </tr>
+
+            <tr>
+                <td>Статус:</td>
+
+                <td>
+                    <input type="radio" name="Status" value="active" />Active
+                    <input type="radio" name="Status" value="inactive" />Inactive
+                </td>
+            </tr>
+
+            <tr>
+                <td>Дата:</td>
+                <td><input type="date" name="Date" value="@ViewBag.Today" /></td>;
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>@ViewBag.mes</td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Сохранить" /></td>
+                <td></td>
+                <td></td>
+                <td><a href="/UserInformation/info/@ViewBag.Entityuser.Id">Вернуться</a></td>
+            </tr>
+        </table>
+    </form>
+</div>

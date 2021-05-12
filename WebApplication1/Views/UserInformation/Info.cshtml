@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Данные пользователя";
+}
+
+<div>
+    <h3>Текущий пользователь</h3>
+    @if (ViewBag.Entityuser.Role == "user")
+    {
+        <table>
+            <tr>
+                <td>Имя: </td>
+                <td>@ViewBag.Entityuser.Name</td>
+            </tr>
+            <tr>
+                <td>Роль: </td>
+                <td>@ViewBag.Entityuser.Role</td>
+            </tr>
+            <tr>
+                <td>Cтатус: </td>
+                <td>@ViewBag.Entityuser.Status</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr><td>--------</td></tr>
+            <tr>
+                <td><a href="/UserInformation/Add/@ViewBag.Entityuser.Id">Добавить</a></td>
+            </tr>
+            <tr><td>--------</td></tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>Номер</td>
+                <td>-------</td>
+                <td>Статус</td>
+                <td>-------</td>
+                <td>Дата</td>
+            </tr>
+        </table>
+
+        <table>
+            @foreach (var b in ViewBag.Devices)
+            {
+                <tr>
+                    <td>@(ViewBag.Devices.IndexOf(b) + 1)</td>
+                    <td>-------</td>
+                    <td>@b.Status</td>
+                    <td>-------</td>
+                    <td>@b.Date</td>
+                    <td>-------</td>
+                    <td><a href="/UserInformation/Change/@b.Id">Изменить</a> / </td>
+                    <td>   </td>
+                    <td><a href="/UserInformation/Delete/@b.Id">Удалить</a></td>
+                </tr>
+            }
+        </table>
+
+        <table>
+            <tr><td>--------</td></tr>
+            <tr>
+                <td><a href="/home/info">Назад</a></td>
+            </tr>
+            <tr><td>--------</td></tr>
+        </table>
+    }
+    else
+    {
+        <table>
+            <tr>Извините, Вам сюда:</tr>
+            <tr><td>--------</td></tr>
+            <tr>
+                <td><a href="/AdminInformation/info/@ViewBag.Entityuser.Id">Нажми меня</a></td>
+            </tr>
+            <tr><td>--------</td></tr>
+        </table>
+    }
+
+
+</div>

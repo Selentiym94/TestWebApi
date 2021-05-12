@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Удаление устройств пользователя";
+}
+
+<div>
+    <h3>Редактор</h3>
+    @if (ViewBag.Admin.Role == "admin")
+    {
+        <table>
+            <tr><td>Удаление выполняется администратором: @ViewBag.Admin.Name</td>
+            <tr><td>Устройство @ViewBag.Device.Id  удалено пользователю @ViewBag.User.Name</td>
+            <tr><td><a href="/AdminInformation/Info/@ViewBag.Admin.Id">Назад</a></td></tr>
+        </table>
+    }
+    else
+    {
+        <table>
+            <tr><td>У пользователя: @ViewBag.Admin.Name (id=@ViewBag.Admin.Id) нет прав для совершения данной операции</td>
+            <tr><td><a href="/AdminInformation/Info/@ViewBag.Admin.Id">Назад</a></td></tr>
+        </table>
+    }
+</div>
