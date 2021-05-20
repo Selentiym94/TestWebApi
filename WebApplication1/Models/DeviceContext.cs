@@ -14,7 +14,7 @@ namespace WebApplication1.Models
 		public string ConnectString { get; set; }
 		
 
-		public DeviceContext(string connectTo = "Server=localhost;Port=5432;Username=postgres;Password='-RKrp5j1';Database=testdbone")
+		public DeviceContext(string connectTo = "Server=localhost;Port=5432;Username=postgres;Password='11223344';Database=testdbone")
 		{
 			ConnectString = connectTo;
 		}
